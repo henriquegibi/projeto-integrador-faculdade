@@ -43,11 +43,3 @@ Toda estrutura de back-end ficará hospedada inicialmente na `localhost`. Uma ap
 O endpoint `escrita` deve receber a frase, guardar no banco de dados. No banco de dados, o MySQL deve responder em qual índice foi escrito a frase e responder para o back-end este índice, e então o back-end deve enviar para o front-end este índice para o front-end poder renderizar a informação para o usuário conforme já foi descrito. Se por alguma razão o back-end não tiver resposta do banco de dados ou não ser possível guardar no banco a referida frase, o back-end deverá enviar para o front-end o índice 0 que o front vai interpretar e enviar um alerta dizendo "Não foi possível armazenar o arquivo, tente novamente mais tarde".
 
 O endpoint `leitura` deve receber o índice numérico, e resgatar no banco de dados qual seria a frase referente àquele índice na tabela para o front-end renderizar para o usuário no front-end conforme já foi descrito.
-
-Tendo todo este escopo, preciso que você providencie o seguinte:
-
-Códigos HTML, CSS e JavaScript para o front-end que vai ser renderizado no navegador de internet.
-
-Código Java para o back-end. Deve dizer como devo configurar o Spring Initializr e depois prover os códigos, incluindo classes, subclasses, etc. Prover também o arquivo pom.xml caso necessário.
-
-Prover arquivo sql com comandos para criação do schema, bando de dados, e uma tabela com uma coluna que é um índice do tipo "auto increment" e outra coluna "frase". O banco de dados deve ser capaz de realizar escritas incrementando automaticamente o índice ao escrever uma nova frase e prover uma frase de acordo com um índice.
