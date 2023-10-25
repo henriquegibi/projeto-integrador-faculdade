@@ -1,0 +1,48 @@
+# Módulos Node.js
+node_modules/
+
+# Arquivos de logs
+logs
+*.log
+
+# Arquivos de saída do npm
+package-lock.json
+npm-debug.log
+
+# Ambiente específico
+.env
+
+# Arquivos temporários
+*.tmp
+
+# Arquivos de compilação
+dist/
+build/
+
+# Arquivos de configuração específicos do IDE
+.idea/
+.vscode/
+
+# Arquivos de cache
+.cache/
+
+# Arquivos de teste
+__tests__/
+test/
+
+# Arquivos de cobertura de teste
+coverage/
+
+# Arquivos de configuração
+*.config.js
+
+# Arquivos de histórico de comandos
+.history/
+
+# Arquivos de dependências específicos do sistema
+.sass-cache/
+
+# Arquivos de compilação TypeScript
+*.tsbuildinfo
+# Local Netlify folder
+.netlify
