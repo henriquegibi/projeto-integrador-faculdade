@@ -1,22 +1,60 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const escreverButton = document.getElementById('escreverButton');
-    const lerButton = document.getElementById('lerButton');
+document.addEventListener('DOMContentLoaded', function()
+{
     const fraseInput = document.getElementById('fraseInput');
     const indiceInput = document.getElementById('indiceInput');
-    const fraseResultado = document.getElementById('fraseResultado');
+    const listagem = document.getElementById('lista');
+    const formEscrever = document.getElementById('form-escrever');
+    const formLer = document.getElementById('form-ler');
+    const apiUrl = "http://34.230.29.29:3000"
+    let frasesOrigem = []
 
-    // Função para validar entrada vazia
     function validarEntrada(texto) {
         return texto.trim() !== '';
     }
 
-    // Função para validar índice
-    function validarIndice(indice) {
-        return /^[0-9]{1,3}$/.test(indice);
+    function getAllFrases(){
+        const options = {method: 'GET'};
+
+        fetch(apiUrl, options)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            listFrases(response)
+            frasesOrigem = response
+        })
+        .catch(err => console.error(err));
     }
 
-    // Evento de clique para escrever frase
-    escreverButton.addEventListener('click', function () {
+    getAllFrases()
+
+    function listFrases (frases){
+        const htmlContent = frases.map(item => {
+            return `<div>${item.text}</div>`
+        }).join('')
+        listagem.innerHTML = htmlContent
+    }
+
+    function postFrase(){
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                texto: fraseInput.value
+            })
+          };
+          
+          fetch(apiUrl, options)
+            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                getAllFrases()
+                fraseInput.value = ''
+            })
+            .catch(err => console.error(err));
+    }
+
+    formEscrever.addEventListener('submit', function(event){
+        event.preventDefault()
         const frase = fraseInput.value;
 
         if (!validarEntrada(frase)) {
@@ -29,27 +67,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Enviar a requisição AJAX para o endpoint de escrita
-        // Você precisa implementar a chamada AJAX aqui
-        // Exemplo: fetch('/escrita', { method: 'POST', body: JSON.stringify({ escrita: frase }) })
+        postFrase()
+    })
 
-        // Após receber a resposta do back-end, exibir o alerta ou mensagem adequada
-    });
-
-    // Evento de clique para ler frase
-    lerButton.addEventListener('click', function () {
+    formLer.addEventListener('submit', function(event){
+        event.preventDefault()
         const indice = indiceInput.value;
 
-        if (!validarIndice(indice)) {
-            alert('Digite um índice numérico válido (1 a 999).');
-            return;
-        }
+        const filtrados = frasesOrigem.filter(item => {
+            return item.text.toLowerCase().includes(indice.toLowerCase())
+        })
 
-        // Enviar a requisição AJAX para o endpoint de leitura com o índice
-        // Você precisa implementar a chamada AJAX aqui
-        // Exemplo: fetch(`/leitura/${indice}`, { method: 'GET' })
+        listFrases(filtrados)
 
-        // Após receber a resposta do back-end, exibir a frase ou mensagem adequada
-        // Exemplo: fraseResultado.innerText = 'Frase lida: ' + respostaDoBackend.frase;
     });
 });

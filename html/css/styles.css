@@ -30,7 +30,10 @@ button {
     cursor: pointer;
 }
 
-#fraseResultado {
-    margin-top: 10px;
-    font-weight: bold;
+#lista div {
+    background-color: #d3f1ff;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    list-style: none;
 }

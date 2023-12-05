@@ -1,7 +1,9 @@
 const express = require("express")
 const app = express()
 app.use(express.json())
-const mongoURI = "mongodb+srv://xxx:yyy@cluster0.zaebtn0.mongodb.net/?retryWrites=true&w=majority"
+const cors = require('cors')
+app.use(cors())
+const mongoURI = "" //URI do mongodb com usuario e senha
 const mongoose = require("mongoose")
 mongoose.connect(mongoURI,{
     useNewUrlParser:true,
@@ -13,18 +15,19 @@ const salvarFrase = async (texto)=>{
     return await frase.save()
 }
 app.post("",(req,res)=>{
+    
+    console.log("POST requested")
     const resposta = salvarFrase(req.body.texto)
     res.send(resposta)
-    console.log("POST requested")
 })
 
 app.get("", async (req,res)=>{
+    console.log("GET requested")
     const lista = await fraseModel.find()
     res.send(lista)
-    console.log("GET requested")
 })
 
 app.listen(3000,()=>{
-    console.log("Server is now running")
+    console.log("Server is now running on 3000")
 })
 module.export = app

@@ -2,27 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frases Desmotivacionais</title>
     <link rel="icon" type="image/x-icon" href="img\favicon.png">
     <meta name="description" content="Escreva ou leia sua frase desmotivacional favorita." />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" type='text/css' href="css/normalize.css" />
+    <link rel="stylesheet" type='text/css' href="css/styles.css" />
 </head>
 <body>
     <div class="escrever">
-        <h2>Escrever Frase</h2>
-        <input type="text" id="fraseInput" placeholder="Digite sua frase (até 250 caracteres)">
-        <button id="escreverButton">Enviar</button>
+        <form id="form-escrever">
+            <h2>Escrever Frase</h2>
+            <input type="text" id="fraseInput" placeholder="Digite sua frase (até 250 caracteres)">
+            <button type="submit" id="escreverButton">Enviar</button>
+        </form>
     </div>
 
     <div class="leitura">
-        <h2>Ler Frase</h2>
-        <input type="text" id="indiceInput" placeholder="Digite o índice (até 3 dígitos)">
-        <button id="lerButton">Buscar</button>
-        <div id="fraseResultado"></div>
+        <form id="form-ler">
+            <h2>Ler Frase</h2>
+            <input type="text" id="indiceInput" placeholder="Pesquisa">
+            <button type="submit" id="lerButton">Buscar</button>
+        </form>
+    </div>
+
+    <div class="listagem">
+        <div id="lista">
+            
+        </div>
     </div>
 
     <script src="js/script.js"></script>
 </body>
 </html>
+<!--
+
+npm init -y
+
+npm install express mongoose
+
+git remote add 
+
+git clone <link>
+
+npm start
+
+-->
